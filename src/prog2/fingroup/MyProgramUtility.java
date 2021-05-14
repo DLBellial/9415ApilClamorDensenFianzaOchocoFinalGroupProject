@@ -28,9 +28,11 @@ Processes:
  */
 public class MyProgramUtility {
     public static ArrayList<Citizen> Record() throws Exception{
-
+        //Reads the file
         File file = new File("C:\\Users\\Admin\\Desktop\\9415ApilClamorDensenFianzaOchocoFinalGroupProject\\src\\prog2\\res\\data.csv");
         Scanner scan = new Scanner(file);
+
+        //Mainly used to read the Number of lines in the file
         FileReader fileReader = new FileReader(file);
         LineNumberReader lineNumberReader = new LineNumberReader(fileReader);
 
@@ -81,6 +83,7 @@ public class MyProgramUtility {
             n++;
         }
 
+        //Populates the ArrayList
         ArrayList<Citizen> record = new ArrayList<Citizen>();
         for (int a = 0; a < lineNumber; a++){
             record.add(new Citizen(firstName[a], lastName[a], email[a], address[a], age[a], resident[a], district[a], gender[a]));
@@ -120,6 +123,7 @@ public class MyProgramUtility {
      */
     public static void sortLastName(ArrayList<Citizen> record){
         try {
+            //Basis
             /*
             Stream<Citizen> names = Record().stream().sorted();
             names.forEach(n -> System.out.println(n));

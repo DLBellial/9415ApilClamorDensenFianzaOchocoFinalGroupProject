@@ -17,6 +17,7 @@ public class MyProgram {
         GUI();
     }
 
+
     /**
      * This is the method that initializes and creates the window and buttons
      * and their respective action listeners
@@ -51,7 +52,7 @@ public class MyProgram {
 
         //Button for displaying Citizens if they are Residents or Non-Residents
         JButton residentbutton = new JButton("Sort Residents from Non-Residents");
-        residentbutton.setBounds(250, 70, 30,30);
+        panel.add(residentbutton);
         residentbutton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -59,12 +60,12 @@ public class MyProgram {
                 showSortedResidents(screenSize);
             }
         });
-        panel.add(residentbutton);
+
 
 
         //Button for displaying Citizens based on their Genders
         JButton genderbutton = new JButton("Sort Males from Females");
-        genderbutton.setBounds(250, 90, 30,30);
+        panel.add(genderbutton);
         genderbutton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -72,12 +73,12 @@ public class MyProgram {
                 showSortedGenders(screenSize);
             }
         });
-        panel.add(genderbutton);
+
 
 
         //Button for displaying Citizens based on their Districts
         JButton districtbutton = new JButton("Sort Based on Districts");
-        districtbutton.setBounds(250,110,30,30);
+        panel.add(districtbutton);
         districtbutton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -85,12 +86,12 @@ public class MyProgram {
                 showSortedDistricts(screenSize);
             }
         });
-        panel.add(districtbutton);
+
 
 
         //Button for displaying Citizens based on their Ages
         JButton agebutton = new JButton("Sort by Ascending Age");
-        agebutton.setBounds(250, 130, 30,30);
+        panel.add(agebutton);
         agebutton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -98,12 +99,12 @@ public class MyProgram {
                 showSortedAges(screenSize);
             }
         });
-        panel.add(agebutton);
+
 
 
         //Button for displaying Citizens based on their Last Names
         JButton lastNamebutton = new JButton("Sort Last Names Alphabetically");
-        lastNamebutton.setBounds(250, 150, 30,30);
+        panel.add(lastNamebutton);
         lastNamebutton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -111,39 +112,53 @@ public class MyProgram {
                 showSortedLastNames(screenSize);
             }
         });
-        panel.add(lastNamebutton);
+
 
         //Button for exiting the program
         JButton exitbutton = new JButton("Exit");
-        exitbutton.setBounds(250, 170,30,30);
+        panel.add(exitbutton);
         exitbutton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();
+                System.exit(0);
             }
         });
-        panel.add(exitbutton);
-
     }
 
     /**
      * This method creates a new window which displays the list of citizens and sorts them based
      * on who are residents and those who are not residents.
      *
-     *
      * @param screenSize to compute screen size and center the window.
      */
     public static void showSortedResidents(Dimension screenSize){
-        JFrame residentFrame = new JFrame("Residents and Non-Residents");
-        residentFrame.setSize( 800,800 );
-        int x = (screenSize.width - residentFrame.getWidth()) / 2;
-        int y = (screenSize.height - residentFrame.getHeight()) / 2;
-        residentFrame.setLocation(x, y);
-        JLabel residentLabel = new JLabel("Sorted Residents from Non-Residents");
-        residentLabel.setBounds( 30, 10, 150,100 );
-        residentFrame.setVisible(true);
+        JFrame frame = new JFrame("Residents and Non-Residents");
+        frame.setSize( 800,800 );
+        frame.setVisible(true);
 
-        residentFrame.getContentPane().add( residentLabel ); //Temporary
+        //Centers the window
+        int x = (screenSize.width - frame.getWidth()) / 2;
+        int y = (screenSize.height - frame.getHeight()) / 2;
+        frame.setLocation(x, y);
+
+        JPanel panel = new JPanel();
+        panel.setLayout(new GridLayout(2,1));
+        frame.add(panel);
+
+        //frame.getContentPane().add(Stuff); //Temporary (Displays the sorted list)
+
+        //Returns user to main menu
+        JButton back = new JButton("Back");
+        back.setBounds(300, 150, 30,30);
+        back.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+                GUI();
+            }
+        });
+        frame.add(back);
     }
 
     /**
@@ -153,16 +168,33 @@ public class MyProgram {
      * @param screenSize to compute screen size and center the window.
      */
     public static void showSortedGenders(Dimension screenSize){
-        JFrame genderFrame = new JFrame("Genders");
-        genderFrame.setSize( 800,800 );
-        int x = (screenSize.width - genderFrame.getWidth()) / 2;
-        int y = (screenSize.height - genderFrame.getHeight()) / 2;
-        genderFrame.setLocation(x, y);
-        JLabel genderLabel = new JLabel("Sorted Males from Females");
-        genderLabel.setBounds( 30, 10, 150,100 );
-        genderFrame.setVisible(true);
+        JFrame frame = new JFrame("Genders");
+        frame.setSize( 800,800 );
+        frame.setVisible(true);
 
-        genderFrame.getContentPane().add(genderLabel); //Temporary
+        //Centers the window
+        int x = (screenSize.width - frame.getWidth()) / 2;
+        int y = (screenSize.height - frame.getHeight()) / 2;
+        frame.setLocation(x, y);
+
+        JPanel panel = new JPanel();
+        panel.setLayout(new GridLayout(2,1));
+        frame.add(panel);
+
+        //frame.getContentPane().add(Stuff); //Temporary (Displays the sorted list)
+
+
+        //Returns user to main menu
+        JButton back = new JButton("Back");
+        back.setBounds(250, 150, 30,30);
+        back.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+                GUI();
+            }
+        });
+        frame.add(back);
     }
 
     /**
@@ -172,16 +204,33 @@ public class MyProgram {
      * @param screenSize to compute screen size and center the window.
      */
     public static void showSortedDistricts(Dimension screenSize){
-        JFrame districtFrame = new JFrame("Districts");
-        districtFrame.setSize( 800,800 );
-        int x = (screenSize.width - districtFrame.getWidth()) / 2;
-        int y = (screenSize.height - districtFrame.getHeight()) / 2;
-        districtFrame.setLocation(x, y);
-        JLabel districtLabel = new JLabel("Sorted Based on Districts");
-        districtLabel.setBounds( 30, 10, 150,100 );
-        districtFrame.setVisible(true);
+        JFrame frame = new JFrame("Districts");
+        frame.setSize( 800,800 );
+        frame.setVisible(true);
 
-        districtFrame.getContentPane().add(districtLabel); //Temporary
+        //Centers the window
+        int x = (screenSize.width - frame.getWidth()) / 2;
+        int y = (screenSize.height - frame.getHeight()) / 2;
+        frame.setLocation(x, y);
+
+        JPanel panel = new JPanel();
+        panel.setLayout(new GridLayout(2,1));
+        frame.add(panel);
+
+        //frame.getContentPane().add(Stuff); //Temporary (Displays the sorted list)
+
+
+        //Returns user to main menu
+        JButton back = new JButton("Back");
+        back.setBounds(250, 150, 30,30);
+        back.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+                GUI();
+            }
+        });
+        frame.add(back);
     }
 
     /**
@@ -191,16 +240,32 @@ public class MyProgram {
      * @param screenSize to compute screen size and center the window.
      */
     public static void showSortedAges(Dimension screenSize){
-        JFrame ageFrame = new JFrame("Ages");
-        ageFrame.setSize( 800,800 );
-        int x = (screenSize.width - ageFrame.getWidth()) / 2;
-        int y = (screenSize.height - ageFrame.getHeight()) / 2;
-        ageFrame.setLocation(x, y);
-        JLabel ageLabel = new JLabel("Sorted Based on Age");
-        ageLabel.setBounds( 30, 10, 150,100 );
-        ageFrame.setVisible(true);
+        JFrame frame = new JFrame("Ages");
+        frame.setSize( 800,800 );
+        frame.setVisible(true);
 
-        ageFrame.getContentPane().add(ageLabel); //Temporary
+        //Centers the window
+        int x = (screenSize.width - frame.getWidth()) / 2;
+        int y = (screenSize.height - frame.getHeight()) / 2;
+        frame.setLocation(x, y);
+
+        JPanel panel = new JPanel();
+        panel.setLayout(new GridLayout(2,1));
+        frame.add(panel);
+
+        //frame.getContentPane().add(Stuff); //Temporary (Displays the sorted list)
+
+        //Returns user to main menu
+        JButton back = new JButton("Back");
+        back.setBounds(250, 150, 30,30);
+        back.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+                GUI();
+            }
+        });
+        frame.add(back);
     }
 
     /**
@@ -210,16 +275,32 @@ public class MyProgram {
      * @param screenSize to compute screen size and center the window.
      */
     public static void showSortedLastNames(Dimension screenSize){
-        JFrame lastNameFrame = new JFrame("Surnames");
-        lastNameFrame.setSize( 800,800 );
-        int x = (screenSize.width - lastNameFrame.getWidth()) / 2;
-        int y = (screenSize.height - lastNameFrame.getHeight()) / 2;
-        lastNameFrame.setLocation(x, y);
-        JLabel lastNameLabel = new JLabel("Sorted Last Names Alphabetically");
-        lastNameLabel.setBounds( 30, 10, 150,100 );
-        lastNameFrame.setVisible(true);
+        JFrame frame = new JFrame("Surnames");
+        frame.setSize( 800,800 );
+        frame.setVisible(true);
+
+        //Centers the window
+        int x = (screenSize.width - frame.getWidth()) / 2;
+        int y = (screenSize.height - frame.getHeight()) / 2;
+        frame.setLocation(x, y);
+
+        JPanel panel = new JPanel();
+        panel.setLayout(new GridLayout(2,1));
+        frame.add(panel);
+
+        //frame.getContentPane().add(Stuff); //Temporary (Displays the sorted list)
 
 
-        lastNameFrame.getContentPane().add(lastNameLabel); //Temporary
+        //Returns user to main menu
+        JButton back = new JButton("Back");
+        back.setBounds(250, 150, 30,30);
+        back.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+                GUI();
+            }
+        });
+        frame.add(back);
     }
 }
