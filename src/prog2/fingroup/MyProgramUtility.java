@@ -22,7 +22,10 @@ Processes:
 5. Sort Last Names Alphabetically (May be used when giving out vaccines orderly)
  */
 
-
+/**
+ * This is the method where the ArrayList<Citizen> is populated with the data from
+ * the CSV file.
+ */
 public class MyProgramUtility {
     public static ArrayList<Citizen> Record() throws Exception{
 
@@ -78,9 +81,6 @@ public class MyProgramUtility {
             n++;
         }
 
-        /**
-         * Format:  Firstname (String), Lastname (String), Email (String), Address (String), Age (Int), District (Int), Resident (Boolean), Gender (Char)
-         */
         ArrayList<Citizen> record = new ArrayList<Citizen>();
         for (int a = 0; a < lineNumber; a++){
             record.add(new Citizen(firstName[a], lastName[a], email[a], address[a], age[a], resident[a], district[a], gender[a]));
@@ -89,35 +89,34 @@ public class MyProgramUtility {
     }
 
     /**
-     * Sorts data based on Ages
+     * This method sorts the citizens based on their ages in an ascending order.
      */
     public static void sortAge(ArrayList<Citizen> record){
-
+    //To be filled
     }
 
     /**
-     * Sorts data based on Residency
+     * This method sorts the citizens whether they are residents or non-residents.
      */
     public static void sortResidents(ArrayList<Citizen> record){
-
+    //To be filled
     }
 
     /**
-     * Sorts data based on Genders
+     * This method sorts the citizens based on their gender(Male or Female).
      */
     public static void sortGender(ArrayList<Citizen> record){
-
+    //To be filled
     }
 
     /**
-     * Sorts data based on Districts
+     * This method sorts the citizens based on their respective districts.
      */
-    public static void sortDistrict(ArrayList<Citizen> record){
-
+    public static void sortDistrict(ArrayList<Citizen> record){//To be filled
     }
 
     /**
-     * Sorts data Alphabetically based on their Last names
+     * this method sorts the citizens alphabetically based on their last names.
      */
     public static void sortLastName(ArrayList<Citizen> record){
         try {
@@ -125,7 +124,6 @@ public class MyProgramUtility {
             Stream<Citizen> names = Record().stream().sorted();
             names.forEach(n -> System.out.println(n));
              */
-
         }catch (Exception e){
             e.printStackTrace();
         }
