@@ -6,6 +6,7 @@ import java.io.LineNumberReader;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
+import java.util.stream.Stream;
 
 
 /**
@@ -94,16 +95,6 @@ public class MyProgramUtility {
 
     }
 
-    public static String getAge(String age){
-        String part = " ";
-        String[] split = age.split(",");
-        for (int i = 0; i < split.length; i++) {
-            String retval = split[i];
-            part = retval;
-        }
-        return part;
-    }
-
     /**
      * Sorts data based on Residency
      */
@@ -129,7 +120,11 @@ public class MyProgramUtility {
      * Sorts data Alphabetically based on their Last names
      */
     public static void sortLastName(ArrayList<Citizen> record){
-
+        try {
+            //Stream<Citizen> names = Record().stream().sorted();
+            //names.forEach(n -> System.out.println(n));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
-
 }
