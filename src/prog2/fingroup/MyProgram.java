@@ -4,110 +4,61 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.FileReader;
-import java.io.LineNumberReader;
-import java.util.Scanner;
 
 public class MyProgram {
-    // Contains the Gui
-    static JButton residentbutton, malebutton, femalebutton, exitbutton;
-
-    //resident
-    static JFrame residentFrame;
-    static JLabel residentLabel;
-    static JButton residentBack;
-    //male
-    static JFrame maleFrame;
-    static JLabel maleLabel;
-    static JButton maleBack;
-    //female
-    static JFrame femaleFrame;
-    static JLabel femaleLabel;
-    static JButton femaleBack;
-
-    public static void main(String[] args) {
-        Frame();
+    public static void main(String [] args){
+        GUI();
     }
 
-    //menu frame
-    public static void Frame(){
+    public static void GUI(){
+        Toolkit toolkit = Toolkit.getDefaultToolkit();
+        Dimension screenSize = toolkit.getScreenSize();
+
         JFrame frame = new JFrame("Citizen");
-        frame.setSize( 500,500 );
-        frame.getContentPane().setLayout( new FlowLayout() );
-        residentbutton = new JButton("Sort Resident");
-        malebutton = new JButton("Sort Male");
-        femalebutton = new JButton("Sort Female");
-        exitbutton = new JButton("Exit");
+        JPanel panel = new JPanel();
+        frame.setSize(300, 280);
+        frame.getContentPane().setLayout(new FlowLayout());
+        frame.add(panel);
+        frame.setVisible(true);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        panel.setLayout(new GridLayout(7,1));
 
-        frame.add( residentbutton );
-        frame.add( malebutton );
-        frame.add( femalebutton );
-        frame.add( exitbutton );
+        //Calculate the frame location
+        int x = (screenSize.width - frame.getWidth()) / 2;
+        int y = (screenSize.height - frame.getHeight()) / 2;
 
-        frame.setLayout( new GridLayout(4, 1) );
-        frame.setVisible( true );
-        frame.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
+        //Set the new frame location
+        frame.setLocation(x, y);
 
-        //perform action every button
-        residentbutton.addActionListener( new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                frame.dispose();
-                buttonResident();
-            }
-        } );
-        malebutton.addActionListener( new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                frame.dispose();
-                buttonMale();
-            }
-        } );
-        femalebutton.addActionListener( new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                frame.dispose();
-                buttonFemale();
-            }
-        } );
+        JLabel menu = new JLabel("~~~~~~~~~~~~~~ Menu ~~~~~~~~~~~~~~");
+        menu.setBounds(400,50,20,20);
+        panel.add(menu);
+
+
+        //Buttons
+        JButton residentbutton = new JButton("Sort Residents from Non-Residents");
+        residentbutton.setBounds(250, 70, 30,30);
+        panel.add(residentbutton);
+
+        JButton genderbutton = new JButton("Sort Males from Females");
+        genderbutton.setBounds(250, 90, 30,30);
+        panel.add(genderbutton);
+
+        JButton districtbutton = new JButton("Sort Based on Districts");
+        districtbutton.setBounds(250,110,30,30);
+        panel.add(districtbutton);
+
+        JButton agebutton = new JButton("Sort by Ascending Age");
+        agebutton.setBounds(250, 130, 30,30);
+        panel.add(agebutton);
+
+        JButton lastNamebutton = new JButton("Sort Last Names Alphabetically");
+        lastNamebutton.setBounds(250, 150, 30,30);
+        panel.add(lastNamebutton);
+
+        JButton exitbutton = new JButton("Exit");
+        exitbutton.setBounds(250, 170,30,30);
+        panel.add(exitbutton);
+
     }
-
-    public static void buttonResident(){
-        residentFrame = new JFrame("Citizen");
-        residentFrame.setSize( 500,500 );
-        residentLabel = new JLabel("Sort Male");
-        residentLabel.setBounds( 30, 10, 150,100 );
-        residentBack = new JButton("Back");
-        residentBack.setBounds( 100, 400, 200, 30 );
-
-        residentFrame.getContentPane().add( residentLabel );
-        residentFrame.getContentPane().add( residentBack );
-    }
-
-    public static void buttonMale(){
-        maleFrame = new JFrame("Citizen");
-        maleFrame.setSize( 500,500 );
-        maleLabel = new JLabel("Sort Resident");
-        maleLabel.setBounds( 30, 10, 150,100 );
-        maleBack = new JButton("Back");
-        maleBack.setBounds( 100, 400, 200, 30 );
-
-        maleFrame.getContentPane().add( maleLabel );
-        maleFrame.getContentPane().add( maleBack );
-    }
-
-    public static void buttonFemale(){
-        femaleFrame = new JFrame("Citizen");
-        femaleFrame.setSize( 500,500 );
-        femaleLabel = new JLabel("Sort Female");
-        femaleLabel.setBounds( 30, 10, 150,100 );
-        femaleBack = new JButton("Back");
-        femaleBack.setBounds( 100, 400, 200, 30 );
-
-        femaleFrame.getContentPane().add( femaleLabel );
-        femaleFrame.getContentPane().add( femaleBack );
-    }
-
-
 }

@@ -121,8 +121,11 @@ public class MyProgramUtility {
      */
     public static void sortLastName(ArrayList<Citizen> record){
         try {
-            //Stream<Citizen> names = Record().stream().sorted();
-            //names.forEach(n -> System.out.println(n));
+            /*
+            Stream<Citizen> names = Record().stream().sorted();
+            names.forEach(n -> System.out.println(n));
+             */
+
         }catch (Exception e){
             e.printStackTrace();
         }
