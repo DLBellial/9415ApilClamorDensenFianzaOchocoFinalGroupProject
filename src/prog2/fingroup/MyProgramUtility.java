@@ -52,42 +52,53 @@ public class MyProgramUtility {
         char[] gender = new char[lineNumber];
         int[] age = new int[lineNumber];
         int[] district = new int[lineNumber];
-        int n = 0;
 
         //Populates the array
         for (int a = 0; scan.hasNextLine(); a++) {
             array[a] = scan.nextLine();
         }
 
-        //Divides the elements separated by a comma into their designated arrays
-        for (String course : array) {
-            String[] temp = course.split(",");
-            firstName[n] = temp[0];
-            lastName[n] = temp[1];
-            email[n] = temp[2];
-            address[n] = temp[3];
-            age[n] = Integer.parseInt(temp[4]);
-            district[n] = Integer.parseInt(temp[6]);
+        String otherThanQuote = " [^\"] ";
+        String quotedString = String.format(" \" %s* \" ", otherThanQuote);
+        String regex = String.format("(?x) "+ // enable comments, ignore white spaces
+                        ",                         "+ // match a comma
+                        "(?=                       "+ // start positive look ahead
+                        "  (?:                     "+ // start non-capturing group 1
+                        "    %s*                   "+ // match 'otherThanQuote' zero or more times
+                        "    %s                    "+ // match 'quotedString'
+                        "  )*                      "+ // end group 1 and repeat it zero or more times
+                        "  %s*                     "+ // match 'otherThanQuote'
+                        "  $                       "+ // match the end of the string
+                        ")                         ", // stop positive look ahead
+                otherThanQuote, quotedString, otherThanQuote);
 
-            if(Objects.equals(temp[5], "Resident")){
-                resident[n] = true;
-            }else{
-                resident[n] = false;
-            }
+        for (int n = 0; n < lineNumber; n++){
 
-            if (Objects.equals(temp[7], "Male")){
-                gender[n] = 'M';
-            }else{
-                gender[n] = 'F';
-            }
-            n++;
+            String temp = array[n];
+            String[] token = temp.split(regex, -1);
+
+            firstName[n] = token[0];
+            lastName[n] = token[1];
+            email[n] = token[2];
+            address[n] = token[3];
+            age[n] = Integer.parseInt(token[4]);
+            district[n] = Integer.parseInt(token[6]);
+
+            //Simplifies if else (If temp is equal to Resident, returns true)
+            resident[n] = Objects.equals(token[5], "Resident");
+            if (Objects.equals(token[7], "Male")) gender[n] = 'M';
+            else gender[n] = 'F';
         }
+
 
         //Populates the ArrayList
         ArrayList<Citizen> record = new ArrayList<Citizen>();
         for (int a = 0; a < lineNumber; a++){
             record.add(new Citizen(firstName[a], lastName[a], email[a], address[a], age[a], resident[a], district[a], gender[a]));
         }
+
+        System.out.println(record);
+
         return record;
     }
 
