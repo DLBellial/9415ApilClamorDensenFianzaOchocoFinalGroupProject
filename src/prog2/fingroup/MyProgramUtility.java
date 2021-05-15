@@ -26,6 +26,7 @@ Processes:
  * the CSV file.
  */
 public class MyProgramUtility {
+    public static int lineNumber = 0;
     public static ArrayList<Citizen> Record() throws Exception{
         //Reads the file
         File file = new File("C:\\Users\\Admin\\Desktop\\9415ApilClamorDensenFianzaOchocoFinalGroupProject\\src\\prog2\\res\\data.csv");
@@ -36,7 +37,6 @@ public class MyProgramUtility {
         LineNumberReader lineNumberReader = new LineNumberReader(fileReader);
 
         //Number of lines dictate array size
-        int lineNumber = 0;
         while (lineNumberReader.readLine() != null) {
             lineNumber++;
         }
@@ -97,58 +97,69 @@ public class MyProgramUtility {
             record.add(new Citizen(firstName[a], lastName[a], email[a], address[a], age[a], resident[a], district[a], gender[a]));
         }
 
-        System.out.println(record);
-
+        System.out.println(record.get(0));
+        //Returns the populated Array
         return record;
     }
 
-    /**
-     * This method sorts the citizens based on their ages in an ascending order.
-     * @return
-     */
-    public static ArrayList<Citizen> sortAge(ArrayList<Citizen> record){
+
+
+
+
+
+
+    public static String displaySortedAges() throws Exception {
+        return sortAge(Record());
+    }
+    public static String displaySortedResidents() throws Exception {
+        return sortResidents(Record());
+    }
+    public static String displaySortedGenders() throws Exception {
+        return sortGender(Record());
+    }
+    public static String displaySortedDistricts() throws Exception {
+        return sortDistrict(Record());
+    }
+    public static String displaySortedLastNames() throws Exception {
+        return sortLastName(Record());
+    }
+
+
+
+
+
+
+
+    public static String sortAge(ArrayList<Citizen> record){
+        String[] sortedArray = new String[lineNumber];
         //To be filled
-        return record;
+        return String.valueOf(sortedArray);
     }
 
-    /**
-     * This method sorts the citizens whether they are residents or non-residents.
-     */
-    public static ArrayList<Citizen> sortResidents(ArrayList<Citizen> record){
+    public static String sortResidents(ArrayList<Citizen> record){
+        String[] sortedArray = new String[lineNumber];
         //To be filled
-        return record;
+        return String.valueOf(sortedArray);
     }
 
-    /**
-     * This method sorts the citizens based on their gender(Male or Female).
-     */
-    public static ArrayList<Citizen> sortGender(ArrayList<Citizen> record){
+    public static String sortGender(ArrayList<Citizen> record){
+        String[] sortedArray = new String[lineNumber];
         //To be filled
-        return record;
+        return String.valueOf(sortedArray);
     }
 
-    /**
-     * This method sorts the citizens based on their respective districts.
-     */
-    public static ArrayList<Citizen> sortDistrict(ArrayList<Citizen> record){
+    public static String sortDistrict(ArrayList<Citizen> record){
+        String[] sortedArray = new String[lineNumber];
         //To be filled
-        return record;
+        return String.valueOf(sortedArray);
     }
 
-    /**
-     * this method sorts the citizens alphabetically based on their last names.
-     */
-    public static ArrayList<Citizen> sortLastName(ArrayList<Citizen> record){
-        try {
-            //Basis
-            /*
-            Stream<Citizen> names = Record().stream().sorted();
-            names.forEach(n -> System.out.println(n));
-             */
-            return record;
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return record;
+    public static String sortLastName(ArrayList<Citizen> record){
+        String[] sortedArray = new String[lineNumber];
+        //To be filled
+        return String.valueOf(sortedArray);
+
+        //Stream<Citizen> names = Record().stream().sorted();
+        //names.forEach(n -> System.out.println(n));
     }
 }

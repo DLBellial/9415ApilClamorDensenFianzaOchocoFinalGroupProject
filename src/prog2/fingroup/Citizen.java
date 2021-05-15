@@ -106,9 +106,9 @@ class Citizen implements Comparable<Citizen> {
      */
 
     public String toString(){
-            String result = " ";
-            result = firstName + "," + lastName + "," + email + "," +  address + "," +  age + "," +  resident + "," +  district + "," +  gender;
-            return result;
+        String result = " ";
+        result = firstName + "," + lastName + "," + email + "," +  address + "," +  age + "," +  resident + "," +  district + "," +  gender;
+        return result;
     }
 
     @Override

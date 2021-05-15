@@ -256,6 +256,7 @@ public class MyProgram {
 
         //frame.getContentPane().add(Stuff); //Temporary (Displays the sorted list)
 
+
         //Returns user to main menu
         JButton back = new JButton("Back");
         back.setBounds(250, 150, 30,30);
