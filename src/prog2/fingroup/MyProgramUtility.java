@@ -6,7 +6,6 @@ import java.io.LineNumberReader;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
-import java.util.stream.Stream;
 
 
 /**
@@ -58,6 +57,7 @@ public class MyProgramUtility {
             array[a] = scan.nextLine();
         }
 
+        //Source: https://stackoverflow.com/questions/1757065/java-splitting-a-comma-separated-string-but-ignoring-commas-in-quotes?noredirect=1&lq=1
         String otherThanQuote = " [^\"] ";
         String quotedString = String.format(" \" %s* \" ", otherThanQuote);
         String regex = String.format("(?x) "+ // enable comments, ignore white spaces
@@ -104,43 +104,51 @@ public class MyProgramUtility {
 
     /**
      * This method sorts the citizens based on their ages in an ascending order.
+     * @return
      */
-    public static void sortAge(ArrayList<Citizen> record){
-    //To be filled
+    public static ArrayList<Citizen> sortAge(ArrayList<Citizen> record){
+        //To be filled
+        return record;
     }
 
     /**
      * This method sorts the citizens whether they are residents or non-residents.
      */
-    public static void sortResidents(ArrayList<Citizen> record){
-    //To be filled
+    public static ArrayList<Citizen> sortResidents(ArrayList<Citizen> record){
+        //To be filled
+        return record;
     }
 
     /**
      * This method sorts the citizens based on their gender(Male or Female).
      */
-    public static void sortGender(ArrayList<Citizen> record){
-    //To be filled
+    public static ArrayList<Citizen> sortGender(ArrayList<Citizen> record){
+        //To be filled
+        return record;
     }
 
     /**
      * This method sorts the citizens based on their respective districts.
      */
-    public static void sortDistrict(ArrayList<Citizen> record){//To be filled
+    public static ArrayList<Citizen> sortDistrict(ArrayList<Citizen> record){
+        //To be filled
+        return record;
     }
 
     /**
      * this method sorts the citizens alphabetically based on their last names.
      */
-    public static void sortLastName(ArrayList<Citizen> record){
+    public static ArrayList<Citizen> sortLastName(ArrayList<Citizen> record){
         try {
             //Basis
             /*
             Stream<Citizen> names = Record().stream().sorted();
             names.forEach(n -> System.out.println(n));
              */
+            return record;
         }catch (Exception e){
             e.printStackTrace();
         }
+        return record;
     }
 }
