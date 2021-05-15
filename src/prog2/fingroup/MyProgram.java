@@ -60,7 +60,7 @@ public class MyProgram {
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();
                 try {
-                    showSortedResidents(screenSize, MyProgramUtility.displaySortedResidents());
+                    showSortedLists(screenSize, MyProgramUtility.displaySortedResidents());
                 } catch (Exception exception) {
                     exception.printStackTrace();
                 }
@@ -77,7 +77,7 @@ public class MyProgram {
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();
                 try {
-                    showSortedGenders(screenSize, MyProgramUtility.displaySortedGenders());
+                    showSortedLists(screenSize, MyProgramUtility.displaySortedGenders());
                 } catch (Exception exception) {
                     exception.printStackTrace();
                 }
@@ -94,7 +94,7 @@ public class MyProgram {
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();
                 try {
-                    showSortedDistricts(screenSize, MyProgramUtility.displaySortedDistricts());
+                    showSortedLists(screenSize, MyProgramUtility.displaySortedDistricts());
                 } catch (Exception exception) {
                     exception.printStackTrace();
                 }
@@ -111,7 +111,7 @@ public class MyProgram {
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();
                 try {
-                    showSortedAges(screenSize, MyProgramUtility.displaySortedAges());
+                    showSortedLists(screenSize, MyProgramUtility.displaySortedAges());
                 } catch (Exception exception) {
                     exception.printStackTrace();
                 }
@@ -128,7 +128,7 @@ public class MyProgram {
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();
                 try {
-                    showSortedLastNames(screenSize, MyProgramUtility.displaySortedLastNames());
+                    showSortedLists(screenSize, MyProgramUtility.displaySortedLastNames());
                 } catch (Exception exception) {
                     exception.printStackTrace();
                 }
@@ -154,8 +154,8 @@ public class MyProgram {
      *
      * @param screenSize to compute screen size and center the window.
      */
-    public static void showSortedResidents(Dimension screenSize, ArrayList<Citizen> record){
-        JFrame frame = new JFrame("Residents and Non-Residents");
+    public static void showSortedLists(Dimension screenSize, ArrayList<Citizen> record){
+        JFrame frame = new JFrame("Citizens");
         frame.setSize( 800,800 );
         frame.setVisible(true);
 
@@ -196,262 +196,6 @@ public class MyProgram {
         //Returns user to main menu
         JButton back = new JButton("Back");
         back.setBounds(300, 150, 30,30);
-        back.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                frame.dispose();
-                try {
-                    GUI();
-                } catch (Exception exception) {
-                    exception.printStackTrace();
-                }
-            }
-        });
-        frame.add(back);
-    }
-
-    /**
-     * This method creates a new window which displays the sorted list of citizens based on their
-     * genders (Male or Female).
-     *
-     * @param screenSize to compute screen size and center the window.
-     */
-    public static void showSortedGenders(Dimension screenSize, ArrayList<Citizen> record){
-        JFrame frame = new JFrame("Genders");
-        frame.setSize( 800,800 );
-        frame.setVisible(true);
-
-        ArrayList<Citizen> recordArray = record;
-        String[][] data = new String[MyProgramUtility.lineNumber][8];
-        for (int a = 0; a < data.length; a++){
-            data[a][0]  = recordArray.get(a).firstName;
-            data[a][1]  = recordArray.get(a).lastName;
-            data[a][2]  = recordArray.get(a).email;
-            data[a][3]  = recordArray.get(a).address;
-            data[a][4]  = String.valueOf(recordArray.get(a).age);
-            data[a][5]  = String.valueOf(recordArray.get(a).resident);
-            data[a][6]  = String.valueOf(recordArray.get(a).district);
-            data[a][7]  = String.valueOf(recordArray.get(a).gender);
-        }
-        String[] columnNames = {"First Name", "Last Name", "Email", "Address", "Age", "Residency", "Districts", "Gender"};
-        JTable table = new JTable(data, columnNames);
-        table.setBounds(30,40,780,780);
-        // adding it to JScrollPane
-        JScrollPane scrollPane = new JScrollPane(table);
-        frame.add(scrollPane);
-        // Frame Size
-        frame.setSize(500, 200);
-        // Frame Visible = true
-        frame.setVisible(true);
-
-        //Centers the window
-        int x = (screenSize.width - frame.getWidth()) / 2;
-        int y = (screenSize.height - frame.getHeight()) / 2;
-        frame.setLocation(x, y);
-
-        JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(2,1));
-        frame.add(panel);
-
-        //frame.getContentPane().add(Stuff); //Temporary (Displays the sorted list)
-
-
-        //Returns user to main menu
-        JButton back = new JButton("Back");
-        back.setBounds(250, 150, 30,30);
-        back.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                frame.dispose();
-                try {
-                    GUI();
-                } catch (Exception exception) {
-                    exception.printStackTrace();
-                }
-            }
-        });
-        frame.add(back);
-    }
-
-    /**
-     * This method creates a new window which displays the sorted list of citizens based on their
-     * districts.
-     *
-     * @param screenSize to compute screen size and center the window.
-     */
-    public static void showSortedDistricts(Dimension screenSize, ArrayList<Citizen> record){
-        JFrame frame = new JFrame("Districts");
-        frame.setSize( 800,800 );
-        frame.setVisible(true);
-
-        ArrayList<Citizen> recordArray = record;
-        String[][] data = new String[MyProgramUtility.lineNumber][8];
-        for (int a = 0; a < data.length; a++){
-            data[a][0]  = recordArray.get(a).firstName;
-            data[a][1]  = recordArray.get(a).lastName;
-            data[a][2]  = recordArray.get(a).email;
-            data[a][3]  = recordArray.get(a).address;
-            data[a][4]  = String.valueOf(recordArray.get(a).age);
-            data[a][5]  = String.valueOf(recordArray.get(a).resident);
-            data[a][6]  = String.valueOf(recordArray.get(a).district);
-            data[a][7]  = String.valueOf(recordArray.get(a).gender);
-        }
-        String[] columnNames = {"First Name", "Last Name", "Email", "Address", "Age", "Residency", "Districts", "Gender"};
-        JTable table = new JTable(data, columnNames);
-        table.setBounds(30,40,780,780);
-        // adding it to JScrollPane
-        JScrollPane scrollPane = new JScrollPane(table);
-        frame.add(scrollPane);
-        // Frame Size
-        frame.setSize(500, 200);
-        // Frame Visible = true
-        frame.setVisible(true);
-
-        //Centers the window
-        int x = (screenSize.width - frame.getWidth()) / 2;
-        int y = (screenSize.height - frame.getHeight()) / 2;
-        frame.setLocation(x, y);
-
-        JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(2,1));
-        frame.add(panel);
-
-        //frame.getContentPane().add(Stuff); //Temporary (Displays the sorted list)
-
-
-        //Returns user to main menu
-        JButton back = new JButton("Back");
-        back.setBounds(250, 150, 30,30);
-        back.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                frame.dispose();
-                try {
-                    GUI();
-                } catch (Exception exception) {
-                    exception.printStackTrace();
-                }
-            }
-        });
-        frame.add(back);
-    }
-
-    /**
-     * This method creates a new window which displays the sorted list of citizens based on their
-     * ages in an ascending manner (youngest to oldest).
-     *
-     * @param screenSize to compute screen size and center the window.
-     */
-    public static void showSortedAges(Dimension screenSize, ArrayList<Citizen> record){
-        JFrame frame = new JFrame("Ages");
-        frame.setSize( 800,800 );
-        frame.setVisible(true);
-
-        ArrayList<Citizen> recordArray = record;
-        String[][] data = new String[MyProgramUtility.lineNumber][8];
-        for (int a = 0; a < data.length; a++){
-            data[a][0]  = recordArray.get(a).firstName;
-            data[a][1]  = recordArray.get(a).lastName;
-            data[a][2]  = recordArray.get(a).email;
-            data[a][3]  = recordArray.get(a).address;
-            data[a][4]  = String.valueOf(recordArray.get(a).age);
-            data[a][5]  = String.valueOf(recordArray.get(a).resident);
-            data[a][6]  = String.valueOf(recordArray.get(a).district);
-            data[a][7]  = String.valueOf(recordArray.get(a).gender);
-        }
-        String[] columnNames = {"First Name", "Last Name", "Email", "Address", "Age", "Residency", "Districts", "Gender"};
-        JTable table = new JTable(data, columnNames);
-        table.setBounds(30,40,780,780);
-        // adding it to JScrollPane
-        JScrollPane scrollPane = new JScrollPane(table);
-        frame.add(scrollPane);
-        // Frame Size
-        frame.setSize(500, 200);
-        // Frame Visible = true
-        frame.setVisible(true);
-
-        //Centers the window
-        int x = (screenSize.width - frame.getWidth()) / 2;
-        int y = (screenSize.height - frame.getHeight()) / 2;
-        frame.setLocation(x, y);
-
-        JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(2,1));
-        frame.add(panel);
-
-        //frame.getContentPane().add(Stuff); //Temporary (Displays the sorted list)
-
-
-        //Returns user to main menu
-        JButton back = new JButton("Back");
-        back.setBounds(250, 150, 30,30);
-        back.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                frame.dispose();
-                try {
-                    GUI();
-                } catch (Exception exception) {
-                    exception.printStackTrace();
-                }
-            }
-        });
-        frame.add(back);
-    }
-/**
- * Format:  Firstname (String), Lastname (String), Email (String), Address (String), Age (Int), Resident (Boolean), District (Int), Gender (Char)
- */
-
-    /**
-     * This method creates a new window which displays the alphabetically sorted list of citizens
-     * based on their last names.
-     *
-     * @param screenSize to compute screen size and center the window.
-     */
-    public static void showSortedLastNames(Dimension screenSize, ArrayList<Citizen> record){
-        JFrame frame = new JFrame("Surnames");
-        frame.setSize( 800,800 );
-        frame.setVisible(true);
-
-        ArrayList<Citizen> recordArray = record;
-        String[][] data = new String[MyProgramUtility.lineNumber][8];
-        for (int a = 0; a < data.length; a++){
-            data[a][0]  = recordArray.get(a).firstName;
-            data[a][1]  = recordArray.get(a).lastName;
-            data[a][2]  = recordArray.get(a).email;
-            data[a][3]  = recordArray.get(a).address;
-            data[a][4]  = String.valueOf(recordArray.get(a).age);
-            data[a][5]  = String.valueOf(recordArray.get(a).resident);
-            data[a][6]  = String.valueOf(recordArray.get(a).district);
-            data[a][7]  = String.valueOf(recordArray.get(a).gender);
-        }
-        String[] columnNames = {"First Name", "Last Name", "Email", "Address", "Age", "Residency", "Districts", "Gender"};
-        JTable table = new JTable(data, columnNames);
-        table.setBounds(30,40,780,780);
-        // adding it to JScrollPane
-        JScrollPane scrollPane = new JScrollPane(table);
-        frame.add(scrollPane);
-        // Frame Size
-        frame.setSize(500, 200);
-        // Frame Visible = true
-        frame.setVisible(true);
-
-
-        //Centers the window
-        int x = (screenSize.width - frame.getWidth()) / 2;
-        int y = (screenSize.height - frame.getHeight()) / 2;
-        frame.setLocation(x, y);
-
-        JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(2,1));
-        frame.add(panel);
-
-        //frame.getContentPane().add(Stuff); //Temporary (Displays the sorted list)
-
-
-        //Returns user to main menu
-        JButton back = new JButton("Back");
-        back.setBounds(250, 150, 30,30);
         back.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
