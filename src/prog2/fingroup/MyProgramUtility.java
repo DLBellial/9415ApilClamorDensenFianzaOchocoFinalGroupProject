@@ -42,7 +42,7 @@ public class MyProgramUtility {
         }
 
         //Initializes the arrays with a dynamic size
-        String[] array  =new String[lineNumber];
+        String[] array  = new String[lineNumber];
         String[] firstName = new String[lineNumber];
         String[] lastName = new String[lineNumber];
         String[] email = new String[lineNumber];
@@ -97,69 +97,230 @@ public class MyProgramUtility {
             record.add(new Citizen(firstName[a], lastName[a], email[a], address[a], age[a], resident[a], district[a], gender[a]));
         }
 
-        System.out.println(record.get(0));
+        System.out.println(record.get(0).age);
+        System.out.println(record.get(3).age);
         //Returns the populated Array
         return record;
     }
 
-
-
-
-
-
-
-    public static String displaySortedAges() throws Exception {
+    public static ArrayList<Citizen> displaySortedAges() throws Exception {
         return sortAge(Record());
     }
-    public static String displaySortedResidents() throws Exception {
+    public static ArrayList<Citizen> displaySortedResidents() throws Exception {
         return sortResidents(Record());
     }
-    public static String displaySortedGenders() throws Exception {
+    public static ArrayList<Citizen> displaySortedGenders() throws Exception {
         return sortGender(Record());
     }
-    public static String displaySortedDistricts() throws Exception {
+    public static ArrayList<Citizen> displaySortedDistricts() throws Exception {
         return sortDistrict(Record());
     }
-    public static String displaySortedLastNames() throws Exception {
+    public static ArrayList<Citizen> displaySortedLastNames() throws Exception {
         return sortLastName(Record());
     }
 
+    public static ArrayList<Citizen> sortAge(ArrayList<Citizen> record){
+        ArrayList<Citizen> recordArray = record;
+        String[] temp = new String[7];
+        char s;
+        for (int a = 0; a < lineNumber; a++){
+            for (int b = a + 1; b < lineNumber; b++){
+                int p1 = recordArray.get(a).age;
+                int p2 = recordArray.get(a+1).age;
+                if (p1 > p2){
+                    temp[0] = recordArray.get(a).firstName;
+                    temp[1] = recordArray.get(a).lastName;
+                    temp[2] = recordArray.get(a).email;
+                    temp[3] = recordArray.get(a).address;
+                    temp[4] = String.valueOf(recordArray.get(a).age);
+                    temp[5] = String.valueOf(recordArray.get(a).resident);
+                    temp[6] = String.valueOf(recordArray.get(a).district);
+                    s = recordArray.get(a).gender;
 
+                    recordArray.get(a).firstName = recordArray.get(a+1).firstName;
+                    recordArray.get(a).lastName = recordArray.get(a+1).lastName;
+                    recordArray.get(a).email = recordArray.get(a+1).email;
+                    recordArray.get(a).address =recordArray.get(a+1).address;
+                    recordArray.get(a).age = recordArray.get(a+1).age;
+                    recordArray.get(a).resident = recordArray.get(a+1).resident;
+                    recordArray.get(a).district = recordArray.get(a+1).district;
+                    recordArray.get(a).gender = recordArray.get(a+1).gender;
 
-
-
-
-
-    public static String sortAge(ArrayList<Citizen> record){
-        String[] sortedArray = new String[lineNumber];
-        //To be filled
-        return String.valueOf(sortedArray);
+                    recordArray.get(a+1).firstName = temp[0];
+                    recordArray.get(a+1).lastName = temp[1];
+                    recordArray.get(a+1).email = temp[2];
+                    recordArray.get(a+1).address = temp[3];
+                    recordArray.get(a+1).age = Integer.parseInt(temp[4]);
+                    recordArray.get(a+1).resident = Boolean.parseBoolean(temp[5]);
+                    recordArray.get(a+1).district = Integer.parseInt(temp[6]);
+                    recordArray.get(a+1).gender = s;
+                }
+            }
+        }
+        return recordArray;
     }
 
-    public static String sortResidents(ArrayList<Citizen> record){
-        String[] sortedArray = new String[lineNumber];
-        //To be filled
-        return String.valueOf(sortedArray);
+    public static ArrayList<Citizen> sortResidents(ArrayList<Citizen> record){
+        ArrayList<Citizen> recordArray = record;
+        String[] temp = new String[7];
+        char s;
+        for (int a = 0; a < lineNumber; a++){
+            for (int b = a + 1; b < lineNumber; b++){
+                boolean p1 = recordArray.get(a).resident;
+                boolean p2 = recordArray.get(a+1).resident;
+                if (!p1 && p2){
+                    temp[0] = recordArray.get(a).firstName;
+                    temp[1] = recordArray.get(a).lastName;
+                    temp[2] = recordArray.get(a).email;
+                    temp[3] = recordArray.get(a).address;
+                    temp[4] = String.valueOf(recordArray.get(a).age);
+                    temp[5] = String.valueOf(recordArray.get(a).resident);
+                    temp[6] = String.valueOf(recordArray.get(a).district);
+                    s = recordArray.get(a).gender;
+
+                    recordArray.get(a).firstName = recordArray.get(a+1).firstName;
+                    recordArray.get(a).lastName = recordArray.get(a+1).lastName;
+                    recordArray.get(a).email = recordArray.get(a+1).email;
+                    recordArray.get(a).address =recordArray.get(a+1).address;
+                    recordArray.get(a).age = recordArray.get(a+1).age;
+                    recordArray.get(a).resident = recordArray.get(a+1).resident;
+                    recordArray.get(a).district = recordArray.get(a+1).district;
+                    recordArray.get(a).gender = recordArray.get(a+1).gender;
+
+                    recordArray.get(a+1).firstName = temp[0];
+                    recordArray.get(a+1).lastName = temp[1];
+                    recordArray.get(a+1).email = temp[2];
+                    recordArray.get(a+1).address = temp[3];
+                    recordArray.get(a+1).age = Integer.parseInt(temp[4]);
+                    recordArray.get(a+1).resident = Boolean.parseBoolean(temp[5]);
+                    recordArray.get(a+1).district = Integer.parseInt(temp[6]);
+                    recordArray.get(a+1).gender = s;
+                }
+            }
+        }
+        return recordArray;
     }
 
-    public static String sortGender(ArrayList<Citizen> record){
-        String[] sortedArray = new String[lineNumber];
-        //To be filled
-        return String.valueOf(sortedArray);
+    public static ArrayList<Citizen> sortGender(ArrayList<Citizen> record){
+        ArrayList<Citizen> recordArray = record;
+        String[] temp = new String[7];
+        char s;
+        for (int a = 0; a < lineNumber; a++){
+            for (int b = a + 1; b < lineNumber; b++){
+                char p1 = recordArray.get(a).gender;
+                char p2 = recordArray.get(a+1).gender;
+                if (p1 == 'M' && p2 == 'F'){
+                    temp[0] = recordArray.get(a).firstName;
+                    temp[1] = recordArray.get(a).lastName;
+                    temp[2] = recordArray.get(a).email;
+                    temp[3] = recordArray.get(a).address;
+                    temp[4] = String.valueOf(recordArray.get(a).age);
+                    temp[5] = String.valueOf(recordArray.get(a).resident);
+                    temp[6] = String.valueOf(recordArray.get(a).district);
+                    s = recordArray.get(a).gender;
+
+                    recordArray.get(a).firstName = recordArray.get(a+1).firstName;
+                    recordArray.get(a).lastName = recordArray.get(a+1).lastName;
+                    recordArray.get(a).email = recordArray.get(a+1).email;
+                    recordArray.get(a).address =recordArray.get(a+1).address;
+                    recordArray.get(a).age = recordArray.get(a+1).age;
+                    recordArray.get(a).resident = recordArray.get(a+1).resident;
+                    recordArray.get(a).district = recordArray.get(a+1).district;
+                    recordArray.get(a).gender = recordArray.get(a+1).gender;
+
+                    recordArray.get(a+1).firstName = temp[0];
+                    recordArray.get(a+1).lastName = temp[1];
+                    recordArray.get(a+1).email = temp[2];
+                    recordArray.get(a+1).address = temp[3];
+                    recordArray.get(a+1).age = Integer.parseInt(temp[4]);
+                    recordArray.get(a+1).resident = Boolean.parseBoolean(temp[5]);
+                    recordArray.get(a+1).district = Integer.parseInt(temp[6]);
+                    recordArray.get(a+1).gender = s;
+                }
+            }
+        }
+        return recordArray;
     }
 
-    public static String sortDistrict(ArrayList<Citizen> record){
-        String[] sortedArray = new String[lineNumber];
-        //To be filled
-        return String.valueOf(sortedArray);
+    public static ArrayList<Citizen> sortDistrict(ArrayList<Citizen> record){
+        ArrayList<Citizen> recordArray = record;
+        String[] temp = new String[7];
+        char s;
+        for (int a = 0; a < lineNumber; a++){
+            for (int b = a + 1; b < lineNumber; b++){
+                int p1 = recordArray.get(a).district;
+                int p2 = recordArray.get(a+1).district;
+                if (p1 > p2){
+                    temp[0] = recordArray.get(a).firstName;
+                    temp[1] = recordArray.get(a).lastName;
+                    temp[2] = recordArray.get(a).email;
+                    temp[3] = recordArray.get(a).address;
+                    temp[4] = String.valueOf(recordArray.get(a).age);
+                    temp[5] = String.valueOf(recordArray.get(a).resident);
+                    temp[6] = String.valueOf(recordArray.get(a).district);
+                    s = recordArray.get(a).gender;
+
+                    recordArray.get(a).firstName = recordArray.get(a+1).firstName;
+                    recordArray.get(a).lastName = recordArray.get(a+1).lastName;
+                    recordArray.get(a).email = recordArray.get(a+1).email;
+                    recordArray.get(a).address =recordArray.get(a+1).address;
+                    recordArray.get(a).age = recordArray.get(a+1).age;
+                    recordArray.get(a).resident = recordArray.get(a+1).resident;
+                    recordArray.get(a).district = recordArray.get(a+1).district;
+                    recordArray.get(a).gender = recordArray.get(a+1).gender;
+
+                    recordArray.get(a+1).firstName = temp[0];
+                    recordArray.get(a+1).lastName = temp[1];
+                    recordArray.get(a+1).email = temp[2];
+                    recordArray.get(a+1).address = temp[3];
+                    recordArray.get(a+1).age = Integer.parseInt(temp[4]);
+                    recordArray.get(a+1).resident = Boolean.parseBoolean(temp[5]);
+                    recordArray.get(a+1).district = Integer.parseInt(temp[6]);
+                    recordArray.get(a+1).gender = s;
+                }
+            }
+        }
+        return recordArray;
     }
 
-    public static String sortLastName(ArrayList<Citizen> record){
-        String[] sortedArray = new String[lineNumber];
-        //To be filled
-        return String.valueOf(sortedArray);
+    public static ArrayList<Citizen> sortLastName(ArrayList<Citizen> record){
+        ArrayList<Citizen> recordArray = record;
+        String[] temp = new String[7];
+        char s;
+        for (int a = 0; a < lineNumber; a++){
+            for (int b = a + 1; b < lineNumber; b++){
+                String p1 = recordArray.get(a).lastName;
+                String p2 = recordArray.get(a+1).lastName;
+                if (p1.compareTo(p2) > 0){
+                    temp[0] = recordArray.get(a).firstName;
+                    temp[1] = recordArray.get(a).lastName;
+                    temp[2] = recordArray.get(a).email;
+                    temp[3] = recordArray.get(a).address;
+                    temp[4] = String.valueOf(recordArray.get(a).age);
+                    temp[5] = String.valueOf(recordArray.get(a).resident);
+                    temp[6] = String.valueOf(recordArray.get(a).district);
+                    s = recordArray.get(a).gender;
 
-        //Stream<Citizen> names = Record().stream().sorted();
-        //names.forEach(n -> System.out.println(n));
+                    recordArray.get(a).firstName = recordArray.get(a+1).firstName;
+                    recordArray.get(a).lastName = recordArray.get(a+1).lastName;
+                    recordArray.get(a).email = recordArray.get(a+1).email;
+                    recordArray.get(a).address =recordArray.get(a+1).address;
+                    recordArray.get(a).age = recordArray.get(a+1).age;
+                    recordArray.get(a).resident = recordArray.get(a+1).resident;
+                    recordArray.get(a).district = recordArray.get(a+1).district;
+                    recordArray.get(a).gender = recordArray.get(a+1).gender;
+
+                    recordArray.get(a+1).firstName = temp[0];
+                    recordArray.get(a+1).lastName = temp[1];
+                    recordArray.get(a+1).email = temp[2];
+                    recordArray.get(a+1).address = temp[3];
+                    recordArray.get(a+1).age = Integer.parseInt(temp[4]);
+                    recordArray.get(a+1).resident = Boolean.parseBoolean(temp[5]);
+                    recordArray.get(a+1).district = Integer.parseInt(temp[6]);
+                    recordArray.get(a+1).gender = s;
+                }
+            }
+        }
+        return recordArray;
     }
 }
