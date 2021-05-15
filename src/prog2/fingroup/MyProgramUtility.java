@@ -98,7 +98,7 @@ public class MyProgramUtility {
         }
 
         System.out.println(record.get(0).age);
-        System.out.println(record.get(3).age);
+        System.out.println(record.get(8).age);
         //Returns the populated Array
         return record;
     }

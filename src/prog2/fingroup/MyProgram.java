@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class MyProgram {
 
@@ -23,7 +24,7 @@ public class MyProgram {
      * This is the method that initializes and creates the window and buttons
      * and their respective action listeners
      */
-    public static void GUI(){
+    public static void GUI() throws Exception {
         //Retrieves the local machine's screen size to center the frame
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         Dimension screenSize = toolkit.getScreenSize();
@@ -58,7 +59,11 @@ public class MyProgram {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();
-                showSortedResidents(screenSize);
+                try {
+                    showSortedResidents(screenSize, MyProgramUtility.displaySortedResidents());
+                } catch (Exception exception) {
+                    exception.printStackTrace();
+                }
             }
         });
 
@@ -71,7 +76,11 @@ public class MyProgram {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();
-                showSortedGenders(screenSize);
+                try {
+                    showSortedGenders(screenSize, MyProgramUtility.displaySortedGenders());
+                } catch (Exception exception) {
+                    exception.printStackTrace();
+                }
             }
         });
 
@@ -84,7 +93,11 @@ public class MyProgram {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();
-                showSortedDistricts(screenSize);
+                try {
+                    showSortedDistricts(screenSize, MyProgramUtility.displaySortedDistricts());
+                } catch (Exception exception) {
+                    exception.printStackTrace();
+                }
             }
         });
 
@@ -97,7 +110,11 @@ public class MyProgram {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();
-                showSortedAges(screenSize);
+                try {
+                    showSortedAges(screenSize, MyProgramUtility.displaySortedAges());
+                } catch (Exception exception) {
+                    exception.printStackTrace();
+                }
             }
         });
 
@@ -110,7 +127,11 @@ public class MyProgram {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();
-                showSortedLastNames(screenSize);
+                try {
+                    showSortedLastNames(screenSize, MyProgramUtility.displaySortedLastNames());
+                } catch (Exception exception) {
+                    exception.printStackTrace();
+                }
             }
         });
 
@@ -133,9 +154,32 @@ public class MyProgram {
      *
      * @param screenSize to compute screen size and center the window.
      */
-    public static void showSortedResidents(Dimension screenSize){
+    public static void showSortedResidents(Dimension screenSize, ArrayList<Citizen> record){
         JFrame frame = new JFrame("Residents and Non-Residents");
         frame.setSize( 800,800 );
+        frame.setVisible(true);
+
+        ArrayList<Citizen> recordArray = record;
+        String[][] data = new String[MyProgramUtility.lineNumber][8];
+        for (int a = 0; a < data.length; a++){
+            data[a][0]  = recordArray.get(a).firstName;
+            data[a][1]  = recordArray.get(a).lastName;
+            data[a][2]  = recordArray.get(a).email;
+            data[a][3]  = recordArray.get(a).address;
+            data[a][4]  = String.valueOf(recordArray.get(a).age);
+            data[a][5]  = String.valueOf(recordArray.get(a).resident);
+            data[a][6]  = String.valueOf(recordArray.get(a).district);
+            data[a][7]  = String.valueOf(recordArray.get(a).gender);
+        }
+        String[] columnNames = {"First Name", "Last Name", "Email", "Address", "Age", "Residency", "Districts", "Gender"};
+        JTable table = new JTable(data, columnNames);
+        table.setBounds(30,40,780,780);
+        // adding it to JScrollPane
+        JScrollPane scrollPane = new JScrollPane(table);
+        frame.add(scrollPane);
+        // Frame Size
+        frame.setSize(500, 200);
+        // Frame Visible = true
         frame.setVisible(true);
 
         //Centers the window
@@ -156,7 +200,11 @@ public class MyProgram {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();
-                GUI();
+                try {
+                    GUI();
+                } catch (Exception exception) {
+                    exception.printStackTrace();
+                }
             }
         });
         frame.add(back);
@@ -168,9 +216,32 @@ public class MyProgram {
      *
      * @param screenSize to compute screen size and center the window.
      */
-    public static void showSortedGenders(Dimension screenSize){
+    public static void showSortedGenders(Dimension screenSize, ArrayList<Citizen> record){
         JFrame frame = new JFrame("Genders");
         frame.setSize( 800,800 );
+        frame.setVisible(true);
+
+        ArrayList<Citizen> recordArray = record;
+        String[][] data = new String[MyProgramUtility.lineNumber][8];
+        for (int a = 0; a < data.length; a++){
+            data[a][0]  = recordArray.get(a).firstName;
+            data[a][1]  = recordArray.get(a).lastName;
+            data[a][2]  = recordArray.get(a).email;
+            data[a][3]  = recordArray.get(a).address;
+            data[a][4]  = String.valueOf(recordArray.get(a).age);
+            data[a][5]  = String.valueOf(recordArray.get(a).resident);
+            data[a][6]  = String.valueOf(recordArray.get(a).district);
+            data[a][7]  = String.valueOf(recordArray.get(a).gender);
+        }
+        String[] columnNames = {"First Name", "Last Name", "Email", "Address", "Age", "Residency", "Districts", "Gender"};
+        JTable table = new JTable(data, columnNames);
+        table.setBounds(30,40,780,780);
+        // adding it to JScrollPane
+        JScrollPane scrollPane = new JScrollPane(table);
+        frame.add(scrollPane);
+        // Frame Size
+        frame.setSize(500, 200);
+        // Frame Visible = true
         frame.setVisible(true);
 
         //Centers the window
@@ -192,7 +263,11 @@ public class MyProgram {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();
-                GUI();
+                try {
+                    GUI();
+                } catch (Exception exception) {
+                    exception.printStackTrace();
+                }
             }
         });
         frame.add(back);
@@ -204,9 +279,32 @@ public class MyProgram {
      *
      * @param screenSize to compute screen size and center the window.
      */
-    public static void showSortedDistricts(Dimension screenSize){
+    public static void showSortedDistricts(Dimension screenSize, ArrayList<Citizen> record){
         JFrame frame = new JFrame("Districts");
         frame.setSize( 800,800 );
+        frame.setVisible(true);
+
+        ArrayList<Citizen> recordArray = record;
+        String[][] data = new String[MyProgramUtility.lineNumber][8];
+        for (int a = 0; a < data.length; a++){
+            data[a][0]  = recordArray.get(a).firstName;
+            data[a][1]  = recordArray.get(a).lastName;
+            data[a][2]  = recordArray.get(a).email;
+            data[a][3]  = recordArray.get(a).address;
+            data[a][4]  = String.valueOf(recordArray.get(a).age);
+            data[a][5]  = String.valueOf(recordArray.get(a).resident);
+            data[a][6]  = String.valueOf(recordArray.get(a).district);
+            data[a][7]  = String.valueOf(recordArray.get(a).gender);
+        }
+        String[] columnNames = {"First Name", "Last Name", "Email", "Address", "Age", "Residency", "Districts", "Gender"};
+        JTable table = new JTable(data, columnNames);
+        table.setBounds(30,40,780,780);
+        // adding it to JScrollPane
+        JScrollPane scrollPane = new JScrollPane(table);
+        frame.add(scrollPane);
+        // Frame Size
+        frame.setSize(500, 200);
+        // Frame Visible = true
         frame.setVisible(true);
 
         //Centers the window
@@ -228,7 +326,11 @@ public class MyProgram {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();
-                GUI();
+                try {
+                    GUI();
+                } catch (Exception exception) {
+                    exception.printStackTrace();
+                }
             }
         });
         frame.add(back);
@@ -240,9 +342,32 @@ public class MyProgram {
      *
      * @param screenSize to compute screen size and center the window.
      */
-    public static void showSortedAges(Dimension screenSize){
+    public static void showSortedAges(Dimension screenSize, ArrayList<Citizen> record){
         JFrame frame = new JFrame("Ages");
         frame.setSize( 800,800 );
+        frame.setVisible(true);
+
+        ArrayList<Citizen> recordArray = record;
+        String[][] data = new String[MyProgramUtility.lineNumber][8];
+        for (int a = 0; a < data.length; a++){
+            data[a][0]  = recordArray.get(a).firstName;
+            data[a][1]  = recordArray.get(a).lastName;
+            data[a][2]  = recordArray.get(a).email;
+            data[a][3]  = recordArray.get(a).address;
+            data[a][4]  = String.valueOf(recordArray.get(a).age);
+            data[a][5]  = String.valueOf(recordArray.get(a).resident);
+            data[a][6]  = String.valueOf(recordArray.get(a).district);
+            data[a][7]  = String.valueOf(recordArray.get(a).gender);
+        }
+        String[] columnNames = {"First Name", "Last Name", "Email", "Address", "Age", "Residency", "Districts", "Gender"};
+        JTable table = new JTable(data, columnNames);
+        table.setBounds(30,40,780,780);
+        // adding it to JScrollPane
+        JScrollPane scrollPane = new JScrollPane(table);
+        frame.add(scrollPane);
+        // Frame Size
+        frame.setSize(500, 200);
+        // Frame Visible = true
         frame.setVisible(true);
 
         //Centers the window
@@ -264,11 +389,18 @@ public class MyProgram {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();
-                GUI();
+                try {
+                    GUI();
+                } catch (Exception exception) {
+                    exception.printStackTrace();
+                }
             }
         });
         frame.add(back);
     }
+/**
+ * Format:  Firstname (String), Lastname (String), Email (String), Address (String), Age (Int), Resident (Boolean), District (Int), Gender (Char)
+ */
 
     /**
      * This method creates a new window which displays the alphabetically sorted list of citizens
@@ -276,10 +408,34 @@ public class MyProgram {
      *
      * @param screenSize to compute screen size and center the window.
      */
-    public static void showSortedLastNames(Dimension screenSize){
+    public static void showSortedLastNames(Dimension screenSize, ArrayList<Citizen> record){
         JFrame frame = new JFrame("Surnames");
         frame.setSize( 800,800 );
         frame.setVisible(true);
+
+        ArrayList<Citizen> recordArray = record;
+        String[][] data = new String[MyProgramUtility.lineNumber][8];
+        for (int a = 0; a < data.length; a++){
+            data[a][0]  = recordArray.get(a).firstName;
+            data[a][1]  = recordArray.get(a).lastName;
+            data[a][2]  = recordArray.get(a).email;
+            data[a][3]  = recordArray.get(a).address;
+            data[a][4]  = String.valueOf(recordArray.get(a).age);
+            data[a][5]  = String.valueOf(recordArray.get(a).resident);
+            data[a][6]  = String.valueOf(recordArray.get(a).district);
+            data[a][7]  = String.valueOf(recordArray.get(a).gender);
+        }
+        String[] columnNames = {"First Name", "Last Name", "Email", "Address", "Age", "Residency", "Districts", "Gender"};
+        JTable table = new JTable(data, columnNames);
+        table.setBounds(30,40,780,780);
+        // adding it to JScrollPane
+        JScrollPane scrollPane = new JScrollPane(table);
+        frame.add(scrollPane);
+        // Frame Size
+        frame.setSize(500, 200);
+        // Frame Visible = true
+        frame.setVisible(true);
+
 
         //Centers the window
         int x = (screenSize.width - frame.getWidth()) / 2;
@@ -300,7 +456,11 @@ public class MyProgram {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();
-                GUI();
+                try {
+                    GUI();
+                } catch (Exception exception) {
+                    exception.printStackTrace();
+                }
             }
         });
         frame.add(back);
