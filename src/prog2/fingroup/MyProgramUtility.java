@@ -7,11 +7,6 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
 
-
-/**
- * Format:  Firstname (String), Lastname (String), Email (String), Address (String), Age (Int), Resident (Boolean), District (Int), Gender (Char)
- */
-
 /*
 Processes:
 1. Sort Age (May be used for curfew monitoring)
@@ -57,7 +52,6 @@ public class MyProgramUtility {
             array[a] = scan.nextLine();
         }
 
-        //Source: https://stackoverflow.com/questions/1757065/java-splitting-a-comma-separated-string-but-ignoring-commas-in-quotes?noredirect=1&lq=1
         String otherThanQuote = " [^\"] ";
         String quotedString = String.format(" \" %s* \" ", otherThanQuote);
         String regex = String.format("(?x) "+ // enable comments, ignore white spaces
@@ -72,11 +66,15 @@ public class MyProgramUtility {
                         ")                         ", // stop positive look ahead
                 otherThanQuote, quotedString, otherThanQuote);
 
+        //For loop used to split the array elements separated by a comma
         for (int n = 0; n < lineNumber; n++){
-
+            //Temporary array mainly used to contain the data to be split
             String temp = array[n];
+
+            //Splits array data separated by commas ignoring cases where a comma is encapsulated within quotations marks
             String[] token = temp.split(regex, -1);
 
+            //Assigns separated elements into temporary arrays that hold specific element characteristics
             firstName[n] = token[0];
             lastName[n] = token[1];
             email[n] = token[2];
@@ -86,40 +84,40 @@ public class MyProgramUtility {
 
             //Simplifies if else (If temp is equal to Resident, returns true)
             resident[n] = Objects.equals(token[5], "Resident");
+            //If Statement that handles gender char assignment by comparing to a String
             if (Objects.equals(token[7], "Male")) gender[n] = 'M';
             else gender[n] = 'F';
         }
 
-
         //Populates the ArrayList
         ArrayList<Citizen> record = new ArrayList<Citizen>();
         for (int a = 0; a < lineNumber; a++){
+            //Adds array elements into Citizen ArrayList
             record.add(new Citizen(firstName[a], lastName[a], email[a], address[a], age[a], resident[a], district[a], gender[a]));
         }
 
-        System.out.println(record.get(0).age);
-        System.out.println(record.get(8).age);
+
+
+        //Test That Prints out Record Contents
+        //Prints out record Just fine
+        for(int j = 0; j < lineNumber; j++){
+            System.out.println(record.get(j));
+        }
+
+
+
+
         //Returns the populated Array
         return record;
     }
 
-    public static ArrayList<Citizen> displaySortedAges() throws Exception {
-        return sortAge(Record());
-    }
-    public static ArrayList<Citizen> displaySortedResidents() throws Exception {
-        return sortResidents(Record());
-    }
-    public static ArrayList<Citizen> displaySortedGenders() throws Exception {
-        return sortGender(Record());
-    }
-    public static ArrayList<Citizen> displaySortedDistricts() throws Exception {
-        return sortDistrict(Record());
-    }
-    public static ArrayList<Citizen> displaySortedLastNames() throws Exception {
-        return sortLastName(Record());
-    }
-
+    /**
+     *
+     * @param record  The ArrayList to be sorted.
+     * @return ArrayList sorted by ascending age.
+     */
     public static ArrayList<Citizen> sortAge(ArrayList<Citizen> record){
+        //Variable recordArray created to hold record data
         ArrayList<Citizen> recordArray = record;
         String[] temp = new String[7];
         char s;
@@ -160,7 +158,13 @@ public class MyProgramUtility {
         return recordArray;
     }
 
+    /**
+     *
+     * @param record The ArrayList to be sorted.
+     * @return ArrayList sorted by residents and non-residents.
+     */
     public static ArrayList<Citizen> sortResidents(ArrayList<Citizen> record){
+        //Variable recordArray created to hold record data
         ArrayList<Citizen> recordArray = record;
         String[] temp = new String[7];
         char s;
@@ -201,7 +205,13 @@ public class MyProgramUtility {
         return recordArray;
     }
 
+    /**
+     *
+     * @param record ArrayList to be sorted.
+     * @return ArrayList sorted by gender.
+     */
     public static ArrayList<Citizen> sortGender(ArrayList<Citizen> record){
+        //Variable recordArray created to hold record data
         ArrayList<Citizen> recordArray = record;
         String[] temp = new String[7];
         char s;
@@ -242,8 +252,15 @@ public class MyProgramUtility {
         return recordArray;
     }
 
+    /**
+     *
+     * @param record ArrayList to be sorted.
+     * @return ArrayList sorted by districts.
+     */
     public static ArrayList<Citizen> sortDistrict(ArrayList<Citizen> record){
+        //Variable recordArray created to hold record data
         ArrayList<Citizen> recordArray = record;
+
         String[] temp = new String[7];
         char s;
         for (int a = 0; a < lineNumber; a++){
@@ -280,10 +297,17 @@ public class MyProgramUtility {
                 }
             }
         }
+        //Returns the sorted recordArray
         return recordArray;
     }
 
+    /**
+     *
+     * @param record ArrayList to be sorted.
+     * @return ArrayList sorted alphabetically by last name.
+     */
     public static ArrayList<Citizen> sortLastName(ArrayList<Citizen> record){
+        //Variable recordArray created to hold record data
         ArrayList<Citizen> recordArray = record;
         String[] temp = new String[7];
         char s;
@@ -321,6 +345,52 @@ public class MyProgramUtility {
                 }
             }
         }
+        //Returns the sorted recordArray
         return recordArray;
+    }
+
+    /**
+     *
+     * @return
+     * @throws Exception
+     */
+    public static ArrayList<Citizen> displaySortedAges() throws Exception {
+        return sortAge(Record());
+    }
+
+    /**
+     *
+     * @return
+     * @throws Exception
+     */
+    public static ArrayList<Citizen> displaySortedResidents() throws Exception {
+        return sortResidents(Record());
+    }
+
+    /**
+     *
+     * @return
+     * @throws Exception
+     */
+    public static ArrayList<Citizen> displaySortedGenders() throws Exception {
+        return sortGender(Record());
+    }
+
+    /**
+     *
+     * @return
+     * @throws Exception
+     */
+    public static ArrayList<Citizen> displaySortedDistricts() throws Exception {
+        return sortDistrict(Record());
+    }
+
+    /**
+     *
+     * @return
+     * @throws Exception
+     */
+    public static ArrayList<Citizen> displaySortedLastNames() throws Exception {
+        return sortLastName(Record());
     }
 }

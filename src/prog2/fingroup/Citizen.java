@@ -2,10 +2,6 @@ package prog2.fingroup;
 
 import java.lang.Comparable;
 
-/**
- * Format: Firstname,Lastname,Email,Address,Age,Resident,District,Gender
- */
-
 class Citizen implements Comparable<Citizen> {
     String firstName = "";
     String lastName = "";
@@ -16,6 +12,9 @@ class Citizen implements Comparable<Citizen> {
     int district;
     char gender = 'z';
 
+    /**
+     * This is a basic class constructor
+     */
         public Citizen(){
             firstName = " ";
             email = " ";
@@ -26,6 +25,18 @@ class Citizen implements Comparable<Citizen> {
             gender = ' ';
         }
 
+    /**
+     * This is a constructor which specifies the number of objects to create
+     *
+     * @param firstName
+     * @param lastName
+     * @param email
+     * @param address
+     * @param age
+     * @param resident
+     * @param district
+     * @param gender
+     */
         public Citizen(String firstName, String lastName, String email, String address, int age, boolean resident, int district, char gender){
             this.firstName = firstName;
             this.lastName = lastName;
@@ -100,10 +111,6 @@ class Citizen implements Comparable<Citizen> {
     public void setGender(char gender) {
         this.gender = gender;
     }
-
-    /**
-     * Format: Firstname,Lastname,Email,Address,Age,Resident,District,Gender
-     */
 
     public String toString(){
         String result = " ";

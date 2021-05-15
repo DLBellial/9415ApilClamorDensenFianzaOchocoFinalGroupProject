@@ -6,6 +6,20 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+/**
+ * This is a program that assists students by displaying
+ * their past, currently enrolled, and upcoming courses
+ * and utilizes CSV(Comma Separated Variables) files to
+ * retrieve data. Users are also able to enter new courses
+ * and grades which the program can compute the weighted
+ * average for.
+ *
+ *
+ * @authors Enrico Ochoco, Densen Kirk, Clamor John Daniel, Fianza Markuzz, Apil Rohanna, Taberna Margarette Casey
+ * @version 1.0
+ * @since 2021-04-28
+ */
+
 public class MyProgram {
 
     /**
@@ -23,9 +37,11 @@ public class MyProgram {
     /**
      * This is the method that initializes and creates the window and buttons
      * and their respective action listeners
+     *
+     * @throws Exception
      */
     public static void GUI() throws Exception {
-        //Retrieves the local machine's screen size to center the frame
+        //Retrieves the local machine's screen size to be used to center the window
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         Dimension screenSize = toolkit.getScreenSize();
 
@@ -55,6 +71,7 @@ public class MyProgram {
         //Button for displaying Citizens if they are Residents or Non-Residents
         JButton residentbutton = new JButton("Sort Residents from Non-Residents");
         panel.add(residentbutton);
+        //Creates an action listener corresponding to the button press
         residentbutton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -72,6 +89,7 @@ public class MyProgram {
         //Button for displaying Citizens based on their Genders
         JButton genderbutton = new JButton("Sort Males from Females");
         panel.add(genderbutton);
+        //Creates an action listener corresponding to the button press
         genderbutton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -106,6 +124,7 @@ public class MyProgram {
         //Button for displaying Citizens based on their Ages
         JButton agebutton = new JButton("Sort by Ascending Age");
         panel.add(agebutton);
+        //Creates an action listener corresponding to the button press
         agebutton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -123,6 +142,7 @@ public class MyProgram {
         //Button for displaying Citizens based on their Last Names
         JButton lastNamebutton = new JButton("Sort Last Names Alphabetically");
         panel.add(lastNamebutton);
+        //Creates an action listener corresponding to the button press
         lastNamebutton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -139,6 +159,7 @@ public class MyProgram {
         //Button for exiting the program
         JButton exitbutton = new JButton("Exit");
         panel.add(exitbutton);
+        //Creates an action listener corresponding to the button press
         exitbutton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -149,10 +170,11 @@ public class MyProgram {
     }
 
     /**
-     * This method creates a new window which displays the list of citizens and sorts them based
-     * on who are residents and those who are not residents.
+     * This method displays the sorted arrays into the graphic user interface by creating
+     * a new and bigger window.
      *
-     * @param screenSize to compute screen size and center the window.
+     * @param screenSize
+     * @param record
      */
     public static void showSortedLists(Dimension screenSize, ArrayList<Citizen> record){
         JFrame frame = new JFrame("Citizens");
@@ -196,6 +218,8 @@ public class MyProgram {
         //Returns user to main menu
         JButton back = new JButton("Back");
         back.setBounds(300, 150, 30,30);
+        frame.add(back);
+        //Creates an action listener corresponding to the button press
         back.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -207,6 +231,6 @@ public class MyProgram {
                 }
             }
         });
-        frame.add(back);
+
     }
 }
