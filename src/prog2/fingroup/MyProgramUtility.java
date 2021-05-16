@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.LineNumberReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -47,10 +48,20 @@ public class MyProgramUtility {
         int[] age = new int[lineNumber];
         int[] district = new int[lineNumber];
 
+        /*
+        array = Arrays.stream(array)
+                .filter(s -> (s != null && s.length() > 0))
+                .toArray(String[]::new);
+
+
+         */
+
         //Populates the array
-        for (int a = 0; scan.hasNextLine(); a++) {
+        for (int a = 0; scan.hasNextLine() && scan.nextLine() != null; a++) {
             array[a] = scan.nextLine();
         }
+
+
 
         String otherThanQuote = " [^\"] ";
         String quotedString = String.format(" \" %s* \" ", otherThanQuote);
@@ -70,6 +81,9 @@ public class MyProgramUtility {
         for (int n = 0; n < lineNumber; n++){
             //Temporary array mainly used to contain the data to be split
             String temp = array[n];
+
+            //System.out.println(regex);
+            //System.out.println(temp);
 
             //Splits array data separated by commas ignoring cases where a comma is encapsulated within quotations marks
             String[] token = temp.split(regex, -1);
@@ -93,6 +107,17 @@ public class MyProgramUtility {
         ArrayList<Citizen> record = new ArrayList<Citizen>();
         for (int a = 0; a < lineNumber; a++){
             //Adds array elements into Citizen ArrayList
+            /*
+            System.out.println("FN: "+firstName[a]);
+            System.out.println("LN: " +lastName[a]);
+            System.out.println( "EM: "+email[a]);
+            System.out.println( "AD: "+address[a]);
+            System.out.println( "AGE: "+age[a]);
+            System.out.println( "RES: "+resident[a]);
+            System.out.println( "DIS: "+district[a]);
+            System.out.println("GEN: " +gender[a]);
+
+             */
             record.add(new Citizen(firstName[a], lastName[a], email[a], address[a], age[a], resident[a], district[a], gender[a]));
         }
 
@@ -112,6 +137,8 @@ public class MyProgramUtility {
     }
 
     /**
+     * This method sorts the Arraylist by age in an
+     * ascending order.
      *
      * @param record  The ArrayList to be sorted.
      * @return ArrayList sorted by ascending age.
@@ -159,6 +186,8 @@ public class MyProgramUtility {
     }
 
     /**
+     * This method sorts the ArrayList from citizens to
+     * non-citizens.
      *
      * @param record The ArrayList to be sorted.
      * @return ArrayList sorted by residents and non-residents.
@@ -206,6 +235,8 @@ public class MyProgramUtility {
     }
 
     /**
+     * This method sorts the ArrayList by gender separating
+     * male from female.
      *
      * @param record ArrayList to be sorted.
      * @return ArrayList sorted by gender.
@@ -253,6 +284,8 @@ public class MyProgramUtility {
     }
 
     /**
+     * This method sorts the ArrayList by grouping
+     * citizens based on their district.
      *
      * @param record ArrayList to be sorted.
      * @return ArrayList sorted by districts.
@@ -302,6 +335,8 @@ public class MyProgramUtility {
     }
 
     /**
+     * This method sorts the ArrayList alphabetically
+     * based on the citizen's last name.
      *
      * @param record ArrayList to be sorted.
      * @return ArrayList sorted alphabetically by last name.
